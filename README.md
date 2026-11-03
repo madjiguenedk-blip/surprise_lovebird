@@ -1,1 +1,120 @@
-# surorise_lovebird
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#171126">
+  <title>Pour Lovebird ♡</title>
+  <style>
+    :root { --pink:#f4b8d2; --lav:#c9b6ff; --cream:#fff4f7; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      margin:0; min-height:100vh; color:var(--cream);
+      font-family: Georgia, "Times New Roman", serif;
+      background: radial-gradient(ellipse at 20% 10%, #49305f 0, transparent 38%),
+                  radial-gradient(ellipse at 85% 75%, #45233f 0, transparent 35%),
+                  linear-gradient(145deg,#100d1b,#21152f 55%,#130f20);
+      overflow-x:hidden;
+    }
+    .stars,.hearts { position:fixed; inset:0; pointer-events:none; overflow:hidden; z-index:0; }
+    .star { position:absolute; width:3px; height:3px; border-radius:50%; background:#fff;
+      opacity:.65; animation:twinkle 3s infinite ease-in-out; }
+    @keyframes twinkle { 0%,100%{opacity:.15;transform:scale(.7)} 50%{opacity:1;transform:scale(1.5)} }
+    @keyframes floatUp { from{transform:translateY(15vh) rotate(0);opacity:0} 15%{opacity:.8} to{transform:translateY(-110vh) rotate(35deg);opacity:0} }
+    .heart { position:absolute; bottom:-50px; color:#f6a9ce; animation:floatUp 12s linear infinite; }
+    main { position:relative; z-index:1; width:min(900px,92%); margin:auto; padding:38px 0 70px; }
+    .screen { min-height:88vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; }
+    .eyebrow { letter-spacing:.28em; text-transform:uppercase; font:11px Arial,sans-serif; color:#e9c4dc; }
+    h1 { font-size:clamp(2.8rem,10vw,5.8rem); line-height:1; margin:18px 0; color:#ffe5f0; text-shadow:0 0 28px #e99bc766; }
+    .subtitle { max-width:540px; color:#e6d8ed; font-size:clamp(1.05rem,3vw,1.35rem); line-height:1.7; }
+    button { border:1px solid #f5c3dc99; border-radius:999px; padding:15px 27px; margin-top:25px;
+      background:linear-gradient(110deg,#e8a9c9,#b9a3ed); color:#24152c; font-weight:bold; font-size:1rem;
+      cursor:pointer; box-shadow:0 8px 30px #e6a4cf33; transition:transform .25s,box-shadow .25s; }
+    button:hover { transform:translateY(-3px); box-shadow:0 12px 35px #e6a4cf66; }
+    #gift { display:none; animation:appear 1.2s ease both; }
+    @keyframes appear { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:none} }
+    .section { padding:55px 0 20px; text-align:center; }
+    h2 { color:#f6c6df; font-size:clamp(2rem,6vw,3.1rem); margin:0 0 18px; }
+    .letter { max-width:720px; margin:25px auto; padding:clamp(24px,5vw,44px);
+      border:1px solid #f5c3dc55; border-radius:25px; background:#ffffff0b;
+      box-shadow:0 15px 60px #0003; line-height:1.9; font-size:1.12rem; color:#f5eaf2; text-align:left; }
+    .signature { text-align:right; color:#f3b8d5; font-style:italic; margin-top:22px; }
+    .gallery { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px; margin:30px auto; max-width:760px; }
+    .photo { padding:10px 10px 18px; background:#fff8f5; border-radius:5px; box-shadow:0 15px 35px #0005;
+      transform:rotate(-2deg); transition:transform .35s; }
+    .photo:nth-child(2) { transform:rotate(2deg); }
+    .photo:hover { transform:rotate(0) translateY(-7px); }
+    .photo img { width:100%; aspect-ratio:4/5; object-fit:cover; display:block; filter:saturate(.9); }
+    .caption { color:#493044; font:italic 15px Georgia,serif; padding-top:12px; }
+    .final { color:#f5c1dc; font-size:clamp(1.5rem,4vw,2.2rem); line-height:1.5; }
+    footer { text-align:center; color:#bdaec8; font:12px Arial,sans-serif; padding-top:45px; }
+    .reveal { opacity:0; transform:translateY(24px); transition:opacity .9s,transform .9s; }
+    .reveal.visible { opacity:1; transform:none; }
+    @media(max-width:580px){ .gallery{grid-template-columns:1fr;max-width:390px}.photo:nth-child(2){transform:rotate(2deg)} }
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+  </style>
+</head>
+<body>
+  <div class="stars" id="stars"></div><div class="hearts" id="hearts"></div>
+  <main>
+    <section class="screen" id="welcome">
+      <div class="eyebrow">Une petite surprise rien que pour toi</div>
+      <h1>Lovebird <span aria-hidden="true">♡</span></h1>
+      <p class="subtitle">Il y a des personnes qui rendent la vie plus belle simplement en étant là.<br>J'ai quelques mots à te confier…</p>
+      <button id="openGift">Ouvrir ton cadeau ✨</button>
+      <p class="eyebrow" style="margin-top:22px;letter-spacing:.12em">À lire doucement, avec le cœur</p>
+    </section>
+
+    <div id="gift">
+      <section class="section reveal">
+        <div class="eyebrow">À toi, Lovebird</div>
+        <h2>Tu comptes tellement</h2>
+        <p class="subtitle">N'oublie jamais la place précieuse que tu as dans ma vie.</p>
+      </section>
+
+      <section class="section reveal">
+        <div class="eyebrow">Nos souvenirs</div>
+        <h2>Deux instants, mille souvenirs</h2>
+        <div class="gallery">
+          <div class="photo"><img src="photos/photo1.jpeg" alt="Souvenir partagé avec Lovebird"><div class="caption">Un souvenir que je garde précieusement ♡</div></div>
+          <div class="photo"><img src="photos/WhatsApp Image 2026-11-03 at 18.17.12.jpeg" alt="Un autre souvenir avec Lovebird"><div class="caption">Parce que ces moments comptent ✨</div></div>
+        </div>
+      </section>
+
+      <section class="section reveal">
+        <div class="eyebrow">Une lettre pour toi</div>
+        <h2>Lis ces quelques mots…</h2>
+        <div class="letter">
+          Ma chère Lovebird,<br><br>
+          Je veux que tu saches à quel point tu es importante pour moi. Même lorsque les journées sont lourdes et que la vie te met à l'épreuve, n'oublie jamais la force qui est en toi.<br><br>
+          Je vois ton courage, ta bravoure et tous les efforts que tu fais, même ceux que personne ne remarque. Tu n'as pas besoin d'être forte à chaque seconde : tu as aussi le droit de te reposer, de douter et de demander du soutien. Tu mérites de la douceur, de la paix et de belles choses.<br><br>
+          Je suis reconnaissante de t'avoir dans ma vie. Peu importe les saisons que tu traverses, tu ne perds jamais ta valeur. Je crois en toi, je suis fière de toi et je t'aime énormément.<br><br>
+          Merci d'être toi. Garde toujours en tête que tu es précieuse, aujourd'hui et tous les jours.
+          <div class="signature">Avec tout mon amour, ta sœur ♡</div>
+        </div>
+      </section>
+
+      <section class="section reveal">
+        <p class="final">Si un jour tu oublies combien tu es aimée,<br>reviens lire ces mots. ♡</p>
+        <div class="eyebrow" style="margin-top:22px">Pour toujours, Lovebird</div>
+      </section>
+    </div>
+    <footer>Fait avec amour, spécialement pour Lovebird ♡</footer>
+  </main>
+  <script>
+    const stars = document.getElementById('stars');
+    for(let i=0;i<75;i++){const s=document.createElement('i');s.className='star';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.animationDelay=Math.random()*4+'s';stars.appendChild(s);}
+    const hearts=document.getElementById('hearts');
+    for(let i=0;i<12;i++){const h=document.createElement('span');h.className='heart';h.textContent='♡';h.style.left=Math.random()*100+'%';h.style.animationDelay=(Math.random()*12)+'s';h.style.animationDuration=(10+Math.random()*9)+'s';h.style.fontSize=(14+Math.random()*18)+'px';hearts.appendChild(h);}
+    document.getElementById('openGift').addEventListener('click',()=>{
+      document.getElementById('gift').style.display='block';
+      document.getElementById('welcome').style.minHeight='55vh';
+      document.getElementById('gift').scrollIntoView({behavior:'smooth'});
+      observer.observe(document.querySelectorAll('.reveal')[0]);
+      document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+    });
+    const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting)entry.target.classList.add('visible')}),{threshold:.12});
+  </script>
+</body>
+</html>
